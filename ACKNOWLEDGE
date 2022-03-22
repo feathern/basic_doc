@@ -1,0 +1,9 @@
+For any work that uses Rayleigh, or work that uses software which incorporates
+Rayleigh source code, please acknowledge the authors and funding agencies as
+indicated in our online documentation:
+
+https://rayleigh-documentation.readthedocs.io/en/latest/doc/source/User_Guide/overview.html#referencing
+
+If you have no access to the online documentation, please refer to the following file in the Rayleigh repository:
+
+doc/source/User_Guide/overview.rst
