@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.9.29)  29 MAR 2022 12:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.9.29)  29 MAR 2022 12:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -850,35 +850,45 @@ This may cause the page layout to be inconsistent, however.
 ]
 Chapter 2.
 [5] [6] [7] [8]
-Overfull \hbox (1015.14922pt too wide) in paragraph at lines 840--840
+Overfull \hbox (322.56638pt too wide) in paragraph at lines 814--814
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 840--840
+Underfull \hbox (badness 10000) in paragraph at lines 814--814
 
  []
 
-
-Overfull \hbox (279.5408pt too wide) in paragraph at lines 858--858
+[9]
+Overfull \hbox (1015.14922pt too wide) in paragraph at lines 922--922
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 858--858
+Underfull \hbox (badness 10000) in paragraph at lines 922--922
 
  []
 
-[9] (./rayleigh.ind)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 881.
+
+Overfull \hbox (279.5408pt too wide) in paragraph at lines 940--940
+[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 940--940
+
+ []
+
+(./rayleigh.ind)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 963.
  [10]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 881.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 963.
  (./rayleigh.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 881.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 881.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 963.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 963.
 Package rerunfilecheck Info: File `rayleigh.out' has not changed.
 (rerunfilecheck)             Checksum: A45495FF4EBA7687401A768C77CD5E92;1958.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 881.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 963.
  ) 
 Here is how much of TeX's memory you used:
  15268 strings out of 481239
@@ -887,7 +897,7 @@ Here is how much of TeX's memory you used:
  30108 multiletter control sequences out of 15000+600000
  586113 words of font info for 73 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 38i,15n,51p,646b,507s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,15n,51p,646b,432s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/tex-gyre/q-ec.enc}{/usr/share/texmf/fonts/e
 nc/dvips/tex-gyre/q-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/tex-gyre/q-ec-sc.
 enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><
@@ -905,7 +915,7 @@ hare/texmf/fonts/type1/public/tex-gyre/qhvr.pfb></usr/share/texmf/fonts/type1/p
 ublic/tex-gyre/qtmb.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmr.pfb>
 </usr/share/texmf/fonts/type1/public/tex-gyre/qtmri.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/txfonts/t1xtt.pfb>
-Output written on rayleigh.pdf (13 pages, 828360 bytes).
+Output written on rayleigh.pdf (13 pages, 833890 bytes).
 PDF statistics:
  218 PDF objects out of 1000 (max. 8388607)
  178 compressed objects within 2 object streams
