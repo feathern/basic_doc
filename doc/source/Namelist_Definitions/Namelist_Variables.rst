@@ -36,8 +36,14 @@ This namelist provides various options to control Rayleigh's input and output ca
 
 .. include:: ../Namelist_Definitions/io_controls_namelist.txt 
 
+Reference
+-------------------------
+This namelist provides options to control the properties of Rayleigh's background state.
+
+.. include:: ../Namelist_Definitions/reference_namelist.txt 
+
 Transport
 -------------------------
-This namelist provides variation options to control Rayleigh's input and output cadence and structure.
+This namelist enables control of Rayleigh's diffusivities.
 
-.. include:: ../Namelist_Definitions/io_controls_namelist.txt 
+.. include:: ../Namelist_Definitions/transport_namelist.txt 

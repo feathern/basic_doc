@@ -231,7 +231,7 @@
   
 
 \title{Rayleigh}
-\date{Mar 28, 2022}
+\date{Mar 29, 2022}
 \release{}
 \author{Nick Featherstone}
 \newcommand{\sphinxlogo}{\sphinxincludegraphics{rayleigh_manual_image_300dpi.jpeg}\par}
@@ -718,7 +718,7 @@ If desired, a simulation’s iteration numbers may be reset upon restarting from
 \section{IO Controls}
 \label{\detokenize{doc/source/Namelist_Definitions/Namelist_Variables:io-controls}}
 \sphinxAtStartPar
-This namelist provides variation options to control Rayleigh’s input and output cadence and structure.
+This namelist provides various options to control Rayleigh’s input and output cadence and structure.
 \begin{description}
 \item[{\sphinxstylestrong{stdout\_file}}] \leavevmode
 \sphinxAtStartPar
@@ -759,6 +759,118 @@ Number of digits for integer\sphinxhyphen{}based checkpoint names to be read dur
 \item[{\sphinxstylestrong{decimal\_places}}] \leavevmode
 \sphinxAtStartPar
 Number of digits to use after then decimal point for those portions of Rayleigh’s text output that displayed in scientific notation.  The default value is 3.
+
+\end{description}
+
+
+\section{Reference}
+\label{\detokenize{doc/source/Namelist_Definitions/Namelist_Variables:reference}}
+\sphinxAtStartPar
+This namelist provides options to control the properties of Rayleigh’s background state.
+\begin{description}
+\item[{\sphinxstylestrong{reference\_type}}] \leavevmode\begin{description}
+\item[{Determines the fluid approximation and background state used by Rayleigh.}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+type 1:  Boussinesq + nondimensional
+
+\item {} 
+\sphinxAtStartPar
+type 2:  Anelastic + polytropic background state (dimensional)
+
+\item {} 
+\sphinxAtStartPar
+type 3:  Anelastic + polytropic background state (non\sphinxhyphen{}dimensional)
+
+\item {} 
+\sphinxAtStartPar
+type 4:  Custom reference\sphinxhyphen{}state (read from file)
+
+\end{itemize}
+
+\end{description}
+
+\item[{\sphinxstylestrong{poly\_n}}] \leavevmode
+\sphinxAtStartPar
+The polytropic index used to describe the background state for reference types 2 and 3.
+
+\item[{\sphinxstylestrong{poly\_Nrho}}] \leavevmode
+\sphinxAtStartPar
+Number of density scaleheights spanning the interval \(r_\mathrm{min}\le r\le r_\mathrm{max}\) for reference types 2 and 3.
+
+\item[{\sphinxstylestrong{poly\_mass}}] \leavevmode
+\sphinxAtStartPar
+Mass interior to \(r_\mathrm{min}\), used in defining the polytropic reference state for reference types 2 and 3.
+
+\item[{\sphinxstylestrong{poly\_rho\_i}}] \leavevmode
+\sphinxAtStartPar
+Specifies the value of density at the inner boundary \(r=r_\mathrm{min}\) for the polytropic reference states of reference types 2 and 3.
+
+\item[{\sphinxstylestrong{pressure\_specific\_heat}}] \leavevmode
+\sphinxAtStartPar
+Determines the value of the specific heat at constant pressure, \(c_\mathrm{p}\) for reference types 2 and 3.
+
+\end{description}
+
+
+\section{Transport}
+\label{\detokenize{doc/source/Namelist_Definitions/Namelist_Variables:transport}}
+\sphinxAtStartPar
+This namelist enables control of Rayleigh’s diffusivities.
+\begin{description}
+\item[{\sphinxstylestrong{\{nu,kappa,eta\}\_type}}] \leavevmode\begin{description}
+\item[{Determines the radial profile of the associated diffusion coefficient.}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+type 1 : no radial variation
+
+\item {} 
+\sphinxAtStartPar
+type 2 : diffusivity profile varies as \(\rho^{n}\) for some real number \sphinxstyleemphasis{n}.
+
+\item {} 
+\sphinxAtStartPar
+type 3 : diffusivity profile is read from a custom\sphinxhyphen{}reference\sphinxhyphen{}state file
+
+\end{itemize}
+
+\end{description}
+
+\item[{\sphinxstylestrong{\{nu,kappa,eta\}\_top}}] \leavevmode\begin{description}
+\item[{Specifies the value of the associated diffusion coefficient at the upper boundary.  This is primarily used for dimensional models or those employing a custom nondimensionalization via Rayleigh’s custom\sphinxhyphen{}reference interface.   For Rayleigh’s intrinsic nondimensional reference states, the following values are assumed:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+reference\_type 1:  \(\nu_\mathrm{top}=1\), \(\kappa_\mathrm{top}=1/\mathrm{Pr}\), \(\eta_\mathrm{top}=1/\mathrm{Pm}\)
+
+\item {} 
+\sphinxAtStartPar
+reference\_type 3: \(\nu_\mathrm{top}=\mathrm{Ek}\), \(\kappa_\mathrm{top}=\mathrm{Ek}/\mathrm{Pr}\), \(\eta_\mathrm{top}=\mathrm{Ek}/\mathrm{Pm}\)
+
+\end{itemize}
+
+\end{description}
+
+\item[{\sphinxstylestrong{\{nu,kappa,eta\}\_power}}] \leavevmode
+\sphinxAtStartPar
+Denotes the value of the exponent \sphinxstyleemphasis{n} in the \(\rho^{n}\) variation associated with diffusion type 2.
+
+\item[{\sphinxstylestrong{hyperdiffusion}}] \leavevmode\begin{description}
+\item[{Set this to variable to .true. to enable hyperdiffusion.  The default value is .false.  When active, diffusivities are multiplied by an additional factor such that:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\(\{\nu,\kappa,\eta\}\rightarrow\{\nu,\kappa,\eta\}\left(1+\alpha\left(\frac{\ell-1}{\ell_\mathrm{max}-1}\right)^\beta\right)\)
+
+\end{itemize}
+
+\end{description}
+
+\item[{\sphinxstylestrong{hyperdiffusion\_alpha}}] \leavevmode
+\sphinxAtStartPar
+Determines the value of \(\alpha\) when hyper diffusion is active.
+
+\item[{\sphinxstylestrong{hyperdiffusion\_beta}}] \leavevmode
+\sphinxAtStartPar
+Determines the value of \(\beta\) when hyper diffusion is active.
 
 \end{description}
 

@@ -1,0 +1,20 @@
+**reference_type**
+  Determines the fluid approximation and background state used by Rayleigh.
+   * type 1:  Boussinesq + nondimensional
+   * type 2:  Anelastic + polytropic background state (dimensional)
+   * type 3:  Anelastic + polytropic background state (non-dimensional)
+   * type 4:  Custom reference-state (read from file)  
+
+**poly_n**
+  The polytropic index used to describe the background state for reference types 2 and 3.
+**poly_Nrho**
+  Number of density scaleheights spanning the interval :math:`r_\mathrm{min}\le r\le r_\mathrm{max}` for reference types 2 and 3.  
+**poly_mass**
+  Mass interior to :math:`r_\mathrm{min}`, used in defining the polytropic reference state for reference types 2 and 3.
+**poly_rho_i**
+  Specifies the value of density at the inner boundary :math:`r=r_\mathrm{min}` for the polytropic reference states of reference types 2 and 3.
+**pressure_specific_heat**
+  Determines the value of the specific heat at constant pressure, :math:`c_\mathrm{p}` for reference types 2 and 3.
+  
+  
+

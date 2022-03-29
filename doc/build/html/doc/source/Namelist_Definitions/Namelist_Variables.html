@@ -15,7 +15,7 @@
     <script src="../../../_static/doctools.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "document", "processHtmlClass": "math|output_area"}}</script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="prev" title="Grid Specification" href="../Model_Setup/grid_specification.html" />
@@ -155,7 +155,7 @@
 </section>
 <section id="io-controls">
 <h2>IO Controls<a class="headerlink" href="#io-controls" title="Permalink to this headline">¶</a></h2>
-<p>This namelist provides variation options to control Rayleigh’s input and output cadence and structure.</p>
+<p>This namelist provides various options to control Rayleigh’s input and output cadence and structure.</p>
 <dl class="simple">
 <dt><strong>stdout_file</strong></dt><dd><p>If desired, set this variable to the name of a file to which Rayleigh’s text output is redirected.   This can be useful for monitoring run progress and time-step size on systems that otherwise don’t produce the text output until a run has complete.  The default value is ‘nofile,’ which indicates that Rayleigh should not redirect stdout to a file.</p>
 </dd>
@@ -176,6 +176,68 @@
 <dt><strong>integer_input_digits</strong></dt><dd><p>Number of digits for integer-based checkpoint names to be read during a restart.  The default value is 8.</p>
 </dd>
 <dt><strong>decimal_places</strong></dt><dd><p>Number of digits to use after then decimal point for those portions of Rayleigh’s text output that displayed in scientific notation.  The default value is 3.</p>
+</dd>
+</dl>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<p>This namelist provides options to control the properties of Rayleigh’s background state.</p>
+<dl class="simple">
+<dt><strong>reference_type</strong></dt><dd><dl class="simple">
+<dt>Determines the fluid approximation and background state used by Rayleigh.</dt><dd><ul class="simple">
+<li><p>type 1:  Boussinesq + nondimensional</p></li>
+<li><p>type 2:  Anelastic + polytropic background state (dimensional)</p></li>
+<li><p>type 3:  Anelastic + polytropic background state (non-dimensional)</p></li>
+<li><p>type 4:  Custom reference-state (read from file)</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt><strong>poly_n</strong></dt><dd><p>The polytropic index used to describe the background state for reference types 2 and 3.</p>
+</dd>
+<dt><strong>poly_Nrho</strong></dt><dd><p>Number of density scaleheights spanning the interval <span class="math notranslate nohighlight">\(r_\mathrm{min}\le r\le r_\mathrm{max}\)</span> for reference types 2 and 3.</p>
+</dd>
+<dt><strong>poly_mass</strong></dt><dd><p>Mass interior to <span class="math notranslate nohighlight">\(r_\mathrm{min}\)</span>, used in defining the polytropic reference state for reference types 2 and 3.</p>
+</dd>
+<dt><strong>poly_rho_i</strong></dt><dd><p>Specifies the value of density at the inner boundary <span class="math notranslate nohighlight">\(r=r_\mathrm{min}\)</span> for the polytropic reference states of reference types 2 and 3.</p>
+</dd>
+<dt><strong>pressure_specific_heat</strong></dt><dd><p>Determines the value of the specific heat at constant pressure, <span class="math notranslate nohighlight">\(c_\mathrm{p}\)</span> for reference types 2 and 3.</p>
+</dd>
+</dl>
+</section>
+<section id="transport">
+<h2>Transport<a class="headerlink" href="#transport" title="Permalink to this headline">¶</a></h2>
+<p>This namelist enables control of Rayleigh’s diffusivities.</p>
+<dl class="simple">
+<dt><strong>{nu,kappa,eta}_type</strong></dt><dd><dl class="simple">
+<dt>Determines the radial profile of the associated diffusion coefficient.</dt><dd><ul class="simple">
+<li><p>type 1 : no radial variation</p></li>
+<li><p>type 2 : diffusivity profile varies as <span class="math notranslate nohighlight">\(\rho^{n}\)</span> for some real number <em>n</em>.</p></li>
+<li><p>type 3 : diffusivity profile is read from a custom-reference-state file</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt><strong>{nu,kappa,eta}_top</strong></dt><dd><dl class="simple">
+<dt>Specifies the value of the associated diffusion coefficient at the upper boundary.  This is primarily used for dimensional models or those employing a custom nondimensionalization via Rayleigh’s custom-reference interface.   For Rayleigh’s intrinsic nondimensional reference states, the following values are assumed:</dt><dd><ul class="simple">
+<li><p>reference_type 1:  <span class="math notranslate nohighlight">\(\nu_\mathrm{top}=1\)</span>, <span class="math notranslate nohighlight">\(\kappa_\mathrm{top}=1/\mathrm{Pr}\)</span>, <span class="math notranslate nohighlight">\(\eta_\mathrm{top}=1/\mathrm{Pm}\)</span></p></li>
+<li><p>reference_type 3: <span class="math notranslate nohighlight">\(\nu_\mathrm{top}=\mathrm{Ek}\)</span>, <span class="math notranslate nohighlight">\(\kappa_\mathrm{top}=\mathrm{Ek}/\mathrm{Pr}\)</span>, <span class="math notranslate nohighlight">\(\eta_\mathrm{top}=\mathrm{Ek}/\mathrm{Pm}\)</span></p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt><strong>{nu,kappa,eta}_power</strong></dt><dd><p>Denotes the value of the exponent <em>n</em> in the <span class="math notranslate nohighlight">\(\rho^{n}\)</span> variation associated with diffusion type 2.</p>
+</dd>
+<dt><strong>hyperdiffusion</strong></dt><dd><dl class="simple">
+<dt>Set this to variable to .true. to enable hyperdiffusion.  The default value is .false.  When active, diffusivities are multiplied by an additional factor such that:</dt><dd><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\{\nu,\kappa,\eta\}\rightarrow\{\nu,\kappa,\eta\}\left(1+\alpha\left(\frac{\ell-1}{\ell_\mathrm{max}-1}\right)^\beta\right)\)</span></p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt><strong>hyperdiffusion_alpha</strong></dt><dd><p>Determines the value of <span class="math notranslate nohighlight">\(\alpha\)</span> when hyper diffusion is active.</p>
+</dd>
+<dt><strong>hyperdiffusion_beta</strong></dt><dd><p>Determines the value of <span class="math notranslate nohighlight">\(\beta\)</span> when hyper diffusion is active.</p>
 </dd>
 </dl>
 </section>
@@ -209,6 +271,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#physical-controls">Physical Controls</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#temporal-controls">Temporal Controls</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#io-controls">IO Controls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transport">Transport</a></li>
 </ul>
 </li>
 </ul>
