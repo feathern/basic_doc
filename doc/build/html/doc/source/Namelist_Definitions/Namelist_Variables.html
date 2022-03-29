@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Main_Input Namelists &#8212; Rayleigh  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "document", "processHtmlClass": "math|output_area"}}</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="prev" title="Grid Specification" href="../Model_Setup/grid_specification.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="main-input-namelists">
+<span id="namelists"></span><h1>Main_Input Namelists<a class="headerlink" href="#main-input-namelists" title="Permalink to this headline">¶</a></h1>
+<section id="problemsize">
+<h2>Problemsize<a class="headerlink" href="#problemsize" title="Permalink to this headline">¶</a></h2>
+<p>This namelist is used to specify the grid.</p>
+<dl class="simple">
+<dt><strong>n_r</strong></dt><dd><p>Number of radial points in model grid</p>
+</dd>
+<dt><strong>rmin</strong></dt><dd><p>Radius of the inner domain boundary, <span class="math notranslate nohighlight">\(r_\mathrm{min}\)</span></p>
+</dd>
+<dt><strong>rmax</strong></dt><dd><p>Radius of the outer domain boundary, <span class="math notranslate nohighlight">\(r_\mathrm{max}\)</span></p>
+</dd>
+<dt><strong>aspect_ratio</strong></dt><dd><p><span class="math notranslate nohighlight">\({r_\mathrm{min}}/{r_\mathrm{max}}\)</span></p>
+</dd>
+<dt><strong>shell_depth</strong></dt><dd><p><span class="math notranslate nohighlight">\(r_\mathrm{max}-r_\mathrm{min}\)</span></p>
+</dd>
+<dt><strong>n_theta</strong></dt><dd><p>Number of theta points in the model grid, <span class="math notranslate nohighlight">\(N_\theta\)</span></p>
+</dd>
+<dt><strong>l_max</strong></dt><dd><p>Truncation degree <span class="math notranslate nohighlight">\(\ell_\mathrm{max}\)</span> used in the spherical harmonic expansion</p>
+</dd>
+<dt><strong>n_l</strong></dt><dd><p><span class="math notranslate nohighlight">\(\ell_\mathrm{max}+1\)</span></p>
+</dd>
+<dt><strong>nprow</strong></dt><dd><p>Number of MPI ranks within each row of the 2-D process grid</p>
+</dd>
+<dt><strong>npcol</strong></dt><dd><p>Number of MPI ranks within each column of the 2-D process grid</p>
+</dd>
+<dt><strong>ncheby</strong></dt><dd><p>Comma-separated list indicating number of Chebyshev polynomials used in each radial subdomain (e.g., 16, 32, 16). Default: n_r [ single domain]</p>
+</dd>
+<dt><strong>dealias_by</strong></dt><dd><p>Comma-separated list indicating number of Chebyshev modes dealiased to zero.  Default is 2/3 ncheby.</p>
+</dd>
+<dt><strong>domain_bounds</strong></dt><dd><p>The domain bounds defining each Chebyshev subdomain</p>
+</dd>
+<dt><strong>n_uniform_domains</strong></dt><dd><p>Number of uniformly-sized Chebyshev domains spanning the depth of the shell.  Default: 1</p>
+</dd>
+<dt><strong>uniform_bounds</strong></dt><dd><p>When set to .true., each chebyshev subdomain will possess the same radial extent.  Default:  .false.</p>
+</dd>
+</dl>
+</section>
+<section id="numerical-controls">
+<h2>Numerical Controls<a class="headerlink" href="#numerical-controls" title="Permalink to this headline">¶</a></h2>
+<p>This namelist provides access to Rayleigh’s run-time optimization options.</p>
+<dl class="simple">
+<dt><strong>band_solve</strong></dt><dd><p>For use with models employing at least three Chebyshev domains.  In those models, the rows of the normally dense matrices used in the Crank-Nicolson scheme may be rearranged into a block-banded form.  Setting this variable to .true. will perform this rearrangement, and Rayleigh will execute a band, rather than dense, solve during each timestep.  Using the band-solve approach can help save memory and may yield performance gains.  No benefit is gained for models using one or two Chebyshev domains.  The default behavior is to use a dense solve (band_solve = .false.).</p>
+</dd>
+<dt><strong>static_transpose</strong></dt><dd><p>When set to .true., buffer space used during Rayleigh’s transposes is allocated once at runtime.  The default behavior (static_tranpose=.false.) is to allocate and deallocate buffer space during each transpose.  On some machines, avoiding this cycle of allocation/deallocation has led to minor performance improvements.</p>
+</dd>
+<dt><strong>static_config</strong></dt><dd><p>When set to .true., sphericalbuffer configurations (e.g., p3a, s2b) are allocated once at runtime.  The default behavior (static_config=.false.) is to save memory by deallocating memory associated with the prior configuration space following a transpose.  If memory is not an issue, this may lead to minor performance improvements on some systems.</p>
+</dd>
+<dt><strong>pad_alltoall</strong></dt><dd><p>When set to .true., transpose buffers are padded throughout with zeros to enforce uniform message size, and a standard alltoall is used for each transpose.  The default behavior (pad_alltoall=.false.) uses alltoallv and variable message sizes.  Depending on the underlying alltoall algorithms in the MPI implementation used, performance my differ between these two approaches.</p>
+</dd>
+</dl>
+</section>
+<section id="physical-controls">
+<h2>Physical Controls<a class="headerlink" href="#physical-controls" title="Permalink to this headline">¶</a></h2>
+<p>This namelist controls the physical effects used in a Rayleigh simulation.</p>
+<dl class="simple">
+<dt><strong>magnetism</strong></dt><dd><p>When set to .true., the MHD approximation is employed.   The default (magnetism=.false.) is to omit the effects of magnetism.</p>
+</dd>
+<dt><strong>nonlinear</strong></dt><dd><p>When set to .false., all nonlinear terms are omitted in the model.  The default (nonlinear=.true.) is to include those terms.</p>
+</dd>
+<dt><strong>momentum_advection</strong></dt><dd><p>When set to .false., <span class="math notranslate nohighlight">\(\boldsymbol{v}\cdot\boldsymbol{\nabla}\boldsymbol{v}=0\)</span>.  This flag is primarily for debugging purposes.  The default value is .true.</p>
+</dd>
+<dt><strong>inertia</strong></dt><dd><p>When set to .false., the material derivative of velocity is omitted (<span class="math notranslate nohighlight">\(\frac{D\boldsymbol{v}}{Dt}=0\)</span>).  This option is primarily intended for mantle convection models.  The default value is .true.</p>
+</dd>
+<dt><strong>rotation</strong></dt><dd><p>When set to .true., the Coriolis term is included in the momentum equation.   The default behavior is to omit rotation in a Rayleigh model (rotation = .false.).</p>
+</dd>
+<dt><strong>lorentz_forces</strong></dt><dd><p>Set this debugging/development flag to .false. to disable the Lorentz force.  Default value is .true., but this flag is ignored entirely when magnetism = .false.</p>
+</dd>
+<dt><strong>viscous_heating</strong></dt><dd><p>Determines whether viscous heating is included in the thermal energy equation.  Default value is .true.  Note that the user-supplied value of this variable is ignored entirely for Boussinesq models run with reference_type = 1.  In those models, viscous_heating is set to .false.</p>
+</dd>
+<dt><strong>ohmic_heating</strong></dt><dd><p>Determines whether ohmic heating is included in the thermal energy equation.  Default value is .true.  Note that the user-supplied value of this variable is ignored entirely for Boussinesq models run with reference_type = 1.  In those models, ohmic_heating is set to .false.</p>
+</dd>
+<dt><strong>advect_reference_state</strong></dt><dd><p>Determines whether the reference-state entropy is advected.  The default is .true.  When set to .false., the <span class="math notranslate nohighlight">\(v_r\frac{\partial\overline{S}}{\partial r}\)</span> term is omitted in the thermal energy equation.  Note that this variable has no impact on models with an adiabatic background state.</p>
+</dd>
+<dt><strong>benchmark_mode</strong></dt><dd><p>When set to a positive value in the interval [1,4], an accuracy benchmark will be performed.  The default is 0 (no benchmarking).  Boussinesq benchmarks are peformed for values of 1 (nonmagnetic) and 2 (magnetic).  Anelastic benchmarks are performed if benchmark_mode has a value of 3 (nonmagnetic) or 4 (magnetic).</p>
+</dd>
+<dt><strong>benchmark_integration_interval</strong></dt><dd><p>Determines the interval (in timesteps) between successive benchmark snapshot analyses.</p>
+</dd>
+<dt><strong>benchmark_report_interval</strong></dt><dd><p>Determines the interval (in timesteps) between successive benchmark report outputs.  Each output contains an average over all benchmark snapshot analyses performed since the previous report.</p>
+</dd>
+</dl>
+</section>
+<section id="temporal-controls">
+<h2>Temporal Controls<a class="headerlink" href="#temporal-controls" title="Permalink to this headline">¶</a></h2>
+<p>This namelist controls timing, time-stepping, and checkpointing in Rayleigh.</p>
+<dl class="simple">
+<dt><strong>alpha_implicit</strong></dt><dd><p>Determines the value of <span class="math notranslate nohighlight">\(\alpha\)</span> used in the Crank-Nicolson semi-implicit time-stepping scheme employed for linear terms.  The default value is 0.5, which ensures second-order accuracy of the algorithm.  A value of 1 (0) describes a fully implicit (explicit) algorithm.</p>
+</dd>
+<dt><strong>max_iterations</strong></dt><dd><p>Maximum number of timesteps for which to evolve a single instance of Rayleigh before exiting the program.  Note that this value does not describe the maximum number of timesteps a model can be run for.  Instead, it determines the maximum number of timesteps Rayleigh will run for during a given session (i.e. following a single call to mpiexec/mpirun).  The default value is 1,000,000.</p>
+</dd>
+<dt><strong>max_time_minutes</strong></dt><dd><p>Maximum walltime (in minutes) for which to run a single instance of Rayleigh before exiting.  As with max_iterations, this is specific to a given Rayleigh session.  Default is <span class="math notranslate nohighlight">\(10^8\)</span> minutes (essentially, unlimited).</p>
+</dd>
+<dt><strong>max_simulated_time</strong></dt><dd><p>The maximum time, in simulation units, for which to evolve a Rayleigh model.  Restarting a model that has already reached this limit will result in running for a single time step before exiting.  The default is effectively unlimited, with a value of <span class="math notranslate nohighlight">\(10^{20}\)</span>.</p>
+</dd>
+<dt><strong>save_last_timestep</strong></dt><dd><p>When set to .true. (default), Rayleigh will checkpoint before exiting normally. Note that this generally occurs when the maximum time or iterations is reached.  This does not apply when a job is terminated by the MPI job scheduler.</p>
+</dd>
+<dt><strong>checkpoint_interval</strong></dt><dd><p>Number of iterations between successive checkpoint outputs.  Default value is -1 (no checkpointing).</p>
+</dd>
+<dt><strong>check_frequency</strong></dt><dd><p>(deprecated) Same as checkpoint_interval.</p>
+</dd>
+<dt><strong>quicksave_interval</strong></dt><dd><p>Number of iterations between successive quicksave outputs.  Default value is -1 (no quicksaves).</p>
+</dd>
+<dt><strong>num_quicksaves</strong></dt><dd><p>Number of quicksave slots (i.e., rapid, rolling checkpoint folders) to use for a given simulation.  Default value is 3.</p>
+</dd>
+<dt><strong>quicksave_minutes</strong></dt><dd><p>Time in minutes between successive quicksaves.  If this variable is set to a positive value (default is -1), the value of quicksave_interval will be ignored.</p>
+</dd>
+<dt><strong>max_time_step</strong></dt><dd><p>The maximum allowed time step.  This value will respected even when if the CFL constraint admits a larger time-step size.  Default value is 1.0.</p>
+</dd>
+<dt><strong>min_time_step</strong></dt><dd><p>The minimum allowable time step.  If the CFL contraint forces a time-step size that falls below this value, Rayleigh will exit.</p>
+</dd>
+<dt><strong>cflmin</strong></dt><dd><p>Used for adaptive timestep control.  Rayleigh ensures that the time-step size never falls below <span class="math notranslate nohighlight">\(cflmin\times t_{CFL}\)</span>, where <span class="math notranslate nohighlight">\(t_{CFL}\)</span> is the minimum timestep allowed by the CFL constraint.  The default value is 0.4.</p>
+</dd>
+<dt><strong>clfmax</strong></dt><dd><p>Used for adaptive timestep control.  Rayleigh ensures that the time-step size never exceeds <span class="math notranslate nohighlight">\(\mathrm{cflmax}\times t_\mathrm{CFL}\)</span>, where <span class="math notranslate nohighlight">\(t_\mathrm{CFL}\)</span> is the minimum timestep allowed by the CFL constraint. The default value is 0.6.</p>
+</dd>
+<dt><strong>new_iteration</strong></dt><dd><p>If desired, a simulation’s iteration numbers may be reset upon restarting from a checkpoint.  Set this value to the new iteration number to use (must be greater than zero), and the old iteration number contained in the checkpoint file will ignored.  The default value is 0.</p>
+</dd>
+</dl>
+</section>
+<section id="io-controls">
+<h2>IO Controls<a class="headerlink" href="#io-controls" title="Permalink to this headline">¶</a></h2>
+<p>This namelist provides variation options to control Rayleigh’s input and output cadence and structure.</p>
+<dl class="simple">
+<dt><strong>stdout_file</strong></dt><dd><p>If desired, set this variable to the name of a file to which Rayleigh’s text output is redirected.   This can be useful for monitoring run progress and time-step size on systems that otherwise don’t produce the text output until a run has complete.  The default value is ‘nofile,’ which indicates that Rayleigh should not redirect stdout to a file.</p>
+</dd>
+<dt><strong>stdout_flush_interval</strong></dt><dd><p>Number of lines to cache before writing to the stdout_file if used.  This prevents excessive disk access while a model is evolving.  The default value if 50.</p>
+</dd>
+<dt><strong>jobinfo_file</strong></dt><dd><p>Set this variable to the name of a file, generated during Rayleigh’s initialization, that contains the values assigned to each namelist variable, along with compiler and Git hash information.  The default filename is ‘jobinfo.txt’</p>
+</dd>
+<dt><strong>terminate_file</strong></dt><dd><p>The name of a file that, if found in the top-level simulation directory, indicates Rayleigh should terminate execution.  This can be useful when trying to exit a run cleanly before the scheduled wall time runs out.  The default filename is ‘terminate’.</p>
+</dd>
+<dt><strong>terminate_check_interval</strong></dt><dd><p>Number of iterations between successive checks for the presence of the job termination file.  The default value is 50.</p>
+</dd>
+<dt><strong>statusline_interval</strong></dt><dd><p>Number of iterations between successive outputs to sdout indicating time step number and size.  The default value is 1, so that iteration number and time-step size are printed during every time step.</p>
+</dd>
+<dt><strong>outputs_per_row</strong></dt><dd><p>Determines the number of process columns that particpate in MPI-IO during checkpointing and diagnostic outputs.  Acceptable values fall in the range [1,nprow], with a default value of 1.</p>
+</dd>
+<dt><strong>integer_output_digits</strong></dt><dd><p>Number of digits to use for all integer-based filenames (e.g., G_Avgs/00000001).  The default value is 8.</p>
+</dd>
+<dt><strong>integer_input_digits</strong></dt><dd><p>Number of digits for integer-based checkpoint names to be read during a restart.  The default value is 8.</p>
+</dd>
+<dt><strong>decimal_places</strong></dt><dd><p>Number of digits to use after then decimal point for those portions of Rayleigh’s text output that displayed in scientific notation.  The default value is 3.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/rayleigh_manual_image_logo.jpeg" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="../../../index.html">Rayleigh</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Model_Setup/index.html">Rayleigh User Manual</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Main_Input Namelists</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#problemsize">Problemsize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#numerical-controls">Numerical Controls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#physical-controls">Physical Controls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#temporal-controls">Temporal Controls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#io-controls">IO Controls</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../Model_Setup/grid_specification.html" title="previous chapter">Grid Specification</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Nick Featherstone.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../../_sources/doc/source/Namelist_Definitions/Namelist_Variables.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

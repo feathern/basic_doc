@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Rayleigh - dynamo in spherical geometry &#8212; Rayleigh  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="rayleigh-dynamo-in-spherical-geometry">
+<h1>Rayleigh - dynamo in spherical geometry<a class="headerlink" href="#rayleigh-dynamo-in-spherical-geometry" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://github.com/geodynamics/Rayleigh/blob/master/LICENSE"><img alt="License GPL3:" src="https://img.shields.io/badge/license-GPL-blue" /></a>
+<a class="reference external" href="https://doi.org/10.5281/zenodo.5774039"><img alt="DOI" src="https://zenodo.org/badge/DOI/10.5281/zenodo.5774039.svg" /></a></p>
+<p>Rayleigh is a 3-D convection code designed for the study of dynamo behavior in spherical geometry.  It evolves the incompressible and anelastic MHD equations in spherical geometry using a pseudo-spectral approach.  Rayleigh employs spherical harmonics in the horizontal direction and Chebyshev polynomials in the radial direction.  The code has undergone extensive accuracy testing using the <a class="reference external" href="http://adsabs.harvard.edu/abs/2001PEPI..128...25C">Christensen et al. (2001)</a> Boussinesq benchmarks and the <a class="reference external" href="http://adsabs.harvard.edu/abs/2011Icar..216..120J">Jones et al. (2011)</a> anelastic benchmarks.   Rayleigh has been developed with NSF support through the Computational Infrastructure for Geodynamics (<a class="reference external" href="https://geodynamics.org/cig/news/newsletters/may-2016/">CIG</a>).</p>
+<section id="contributing-to-rayleigh">
+<h2>Contributing to Rayleigh<a class="headerlink" href="#contributing-to-rayleigh" title="Permalink to this headline">¶</a></h2>
+<p>Rayleigh is a community project that lives by the participation of its members
+– i.e., including you! It is our goal to build an inclusive and participatory
+community so we are happy that you are interested in participating! We have
+collected a set of guidelines and advice on how to get involved in the
+community and keep them in the <a class="reference internal" href="CONTRIBUTING.html"><span class="doc">CONTRIBUTING.md</span></a> file in
+Rayleigh’s repository.</p>
+</section>
+<section id="parallelization">
+<h2>Parallelization<a class="headerlink" href="#parallelization" title="Permalink to this headline">¶</a></h2>
+<p>The pseudo-spectral nature of Rayleigh means that its parallelization necessarily relies heavily on <em>global communication</em> patterns.  That said, Rayleigh’s parallelization is based around a 2-D domain decomposition and large-message-size all-to-alls.  These features allow the code to overcome many of the obstacles that traditionally limit the scalability of spectral methods.   The end result is a pseudo-spectral code optimized for petascale machines.  Rayleigh’s pure-MPI mode has demonstrated highly efficient strong scaling on  131,000 cores of the Mira Blue Gene/Q supercomputer for problems with approximately 2048^3 grid points (2048 spherical harmonics).  Performance numbers from Mira are shown below.  A summary of Rayleigh’s performance and how it compares against other popular dynamo codes (albeit at at smaller process counts) may be found in the recent performance benchmark results of <a class="reference external" href="http://onlinelibrary.wiley.com/doi/10.1002/2015GC006159/full">Matsui et al. (2016)</a>.</p>
+</section>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p>The following documents form the Rayleigh documentation.</p>
+<p>| Document | Description |
+|———-|————-|
+| <a class="reference external" href="INSTALL">INSTALL</a> | in-depth installation instructions |
+| https://rayleigh-documentation.readthedocs.io/en/latest/ | A combined online documentation |
+| https://rayleigh-documentation.readthedocs.io/en/latest/doc/source/diagnostic_codes/qcodes.html | Online tables of Rayleigh output menu codes |</p>
+</section>
+<section id="more-information">
+<h2>More information<a class="headerlink" href="#more-information" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>For questions on the source code of Rayleigh, portability, installation, new or existing features, etc., use the <a class="reference external" href="https://community.geodynamics.org/c/rayleigh/5">Rayleigh forum</a>. This forum is where the Rayleigh users and developers all hang out.</p></li>
+<li><p>Rayleigh is continually being improved by a large, collaborative, and inclusive community. It is primarily developed and maintained by:</p>
+<ul>
+<li><p>Nicholas Featherstone</p></li>
+<li><p>Philipp Edelmann</p></li>
+<li><p>Rene Gassmoeller</p></li>
+<li><p>Loren Matilsky</p></li>
+<li><p>Ryan Orvedahl</p></li>
+<li><p>Cian Wilson</p></li>
+</ul>
+</li>
+<li><p>A complete and growing list of the many authors that have contributed over the years can be found at <a class="reference external" href="https://github.com/geodynamics/Rayleigh/graphs/contributors">GitHub contributors</a>.</p></li>
+</ul>
+</section>
+<section id="authors">
+<h2>Authors<a class="headerlink" href="#authors" title="Permalink to this headline">¶</a></h2>
+<p>Rayleigh was originally written by Nicholas Featherstone with NSF support through <a class="reference external" href="https://geodynamics.org">CIG</a>.  Please see the <a class="reference external" href="ACKNOWLEDGE">ACKNOWLEDGE</a> file for citation information.</p>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>Rayleigh is released under the <a class="reference external" href="https://www.gnu.org/licenses/gpl-3.0.en.html">GPL v3 or newer license.</a></p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/rayleigh_manual_image_logo.jpeg" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="index.html">Rayleigh</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="doc/source/Model_Setup/index.html">Rayleigh User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc/source/Namelist_Definitions/Namelist_Variables.html">Namelist Variables</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Nick Featherstone.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/README.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Changelog &#8212; Rayleigh  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="changelog">
+<h1>Changelog<a class="headerlink" href="#changelog" title="Permalink to this headline">¶</a></h1>
+<p>All notable changes <strong>following the 1.0.0 release</strong> of <em>Rayleigh</em> will be documented in this file.  Changes in 1.0.0 and prior versions are summarized.  The format is based on <a class="reference external" href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>,
+with the addition of author(s), date of change and optionally the relevant issue.</p>
+<p>Add new entries a the bottom of the current list in the subheading. Item format:</p>
+<ul class="simple">
+<li><p>Description. [Name; date; relevant github issue tag(s) and or pull requests]</p></li>
+</ul>
+<p>This project adheres to <a class="reference external" href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
+<section id="unreleased">
+<h2>[Unreleased]<a class="headerlink" href="#unreleased" title="Permalink to this headline">¶</a></h2>
+<section id="added">
+<h3>Added<a class="headerlink" href="#added" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Added new main_input class to rayleigh_diagnostics.py.   Usage examples are provided in Rayleigh/examples/main_input_class. [Nick Featherstone; 1-11-2022; <a class="reference external" href="https://github.com/geodynamics/Rayleigh/pull/352">#352</a>]</p></li>
+</ul>
+</section>
+<section id="changed">
+<h3>Changed<a class="headerlink" href="#changed" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The rotation rate is now accounted for when computing the maximum allowable timestep.  Now, the timestep may not exceed CFLMax/(c1*4), where CFLMax is the CFL safety factor.  c1 is the 1st Rayleigh constant, effectively the inverse of the rotational timescale (c1 = 2 Omega for reference_type=2 and 2/Ek for reference_type=1). [Nick Featherstone; 12-11-2021; <a class="reference external" href="https://github.com/geodynamics/Rayleigh/pull/348">#348</a>]</p></li>
+<li><p>When running with both internal heating and fix_dTdr_top=.true., the value of dTdr_top is now set internally by Rayleigh.  This is done to ensure consistency with the internal heating as well as any flux passing through the lower boundary (if fixed flux lower boundary conditions are applied).   To override this behavior, set adjust_dTdr to .false. in the Boundary_Conditions namelist. [Nick Featherstone; 12-13-2021; <a class="reference external" href="https://github.com/geodynamics/Rayleigh/pull/349">#349</a>]</p></li>
+</ul>
+</section>
+<section id="fixed">
+<h3>Fixed<a class="headerlink" href="#fixed" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>None yet</p></li>
+</ul>
+</section>
+</section>
+<section id="id1">
+<h2>[1.0.1] - 12-11-2021<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<section id="id2">
+<h3>Fixed<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Radially varying magnetic diffusivity is now correctly evolved using the Crank-Nicholson scheme for the toroidal magnetic scalar potential <em>A</em>. [Nick Featherstone; 12-03-2021; <a class="reference external" href="https://github.com/geodynamics/Rayleigh/pull/346">#346</a>]</p></li>
+</ul>
+</section>
+</section>
+<section id="id3">
+<h2>[1.0.0] - 11-12-2021<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<section id="id4">
+<h3>Added<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Online, up-to-date-documentation is now available <a class="reference external" href="https://rayleigh-documentation.readthedocs.io/en/latest/index.html">here</a>.  The source files for this documentation are provided as part of the repository and are stored in the ‘doc’ directory.</p></li>
+<li><p>Customizability enhancements:  Users may specify custom boundary conditions and/or initial conditions as described <a class="reference external" href="https://rayleigh-documentation.readthedocs.io/en/latest/doc/source/User_Guide/physics.html?highlight=generic#generic-boundary-conditions">here</a> and <a class="reference external" href="https://rayleigh-documentation.readthedocs.io/en/latest/doc/source/User_Guide/physics.html?highlight=generic#generic-initial-conditions">here</a>.  Users are also free to fully specify the set of constant and nonconstant coefficients that define the system of PDEs solved by Rayleigh, as described in the <a class="reference external" href="https://rayleigh-documentation.readthedocs.io/en/latest/doc/source/User_Guide/custom_reference_states.html">documentation</a>.</p></li>
+</ul>
+</section>
+<section id="id5">
+<h3>Changed<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Portable checkpoint format:  The checkpoint format has changed such that each checkpoint resides in its own directory.  All files and information needed to restart a model, including a copy of main_input, are now stored within each numbered checkpoint directory.</p></li>
+</ul>
+</section>
+</section>
+<section id="id6">
+<h2>[0.9.1] - 04-28-2018<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<section id="id7">
+<h3>Added<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The configure script now accepts the –with-custom and -devel flags (run ./configure –help for details)</p></li>
+</ul>
+</section>
+<section id="id8">
+<h3>Fixed<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Several output-quantity codes were double-booked. The output quantity tables have been adjust accordingly.  This error produced issues with quantity codes in the following ranges:</p>
+<ul>
+<li><p>1900–2000 (kinetic energy equation codes)</p></li>
+<li><p>1400–1600 (thermal energy equation codes)</p></li>
+<li><p>1600–1800 (magnetic energy equation codes)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="initial-release">
+<h2>[0.9.0] - 01-23-2018 - Initial Release<a class="headerlink" href="#initial-release" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/rayleigh_manual_image_logo.jpeg" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="index.html">Rayleigh</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="doc/source/Model_Setup/index.html">Rayleigh User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc/source/Namelist_Definitions/Namelist_Variables.html">Namelist Variables</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Nick Featherstone.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/CHANGELOG.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,12 @@
+\babel@toc {english}{}
+\contentsline {chapter}{\numberline {1}Rayleigh User Manual}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Grid Specification}{1}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Standard grid specification}{1}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Defining multiple Chebyshev domains}{2}{subsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.1.3}Controlling radial dealiasing}{3}{subsection.1.1.3}%
+\contentsline {chapter}{\numberline {2}Main\_Input Namelists}{5}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Problemsize}{5}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Numerical Controls}{6}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Physical Controls}{6}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Temporal Controls}{7}{section.2.4}%
+\contentsline {section}{\numberline {2.5}IO Controls}{8}{section.2.5}%

@@ -32,12 +32,6 @@ This namelist controls timing, time-stepping, and checkpointing in Rayleigh.
 
 IO Controls
 -------------------------
-This namelist provides various options to control Rayleigh's input and output cadence and structure.
-
-.. include:: ../Namelist_Definitions/io_controls_namelist.txt 
-
-Transport
--------------------------
 This namelist provides variation options to control Rayleigh's input and output cadence and structure.
 
 .. include:: ../Namelist_Definitions/io_controls_namelist.txt 
