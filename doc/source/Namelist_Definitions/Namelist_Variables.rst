@@ -4,6 +4,8 @@
 Main_Input Namelists
 ==============================================
 
+This page provides a quick reference for all support main_input namelist variables.
+
 
 Problemsize
 -------------------------
@@ -35,6 +37,10 @@ IO Controls
 This namelist provides various options to control Rayleigh's input and output cadence and structure.
 
 .. include:: ../Namelist_Definitions/io_controls_namelist.txt 
+
+Output
+-------------------------
+This namelist is described in extensive detail in Rayleigh/post_processing/Diagnostic_Plotting.ipynb.  Please see that document for a discussion of these namelist variables and the general structure of Rayleigh's output.
 
 
 Boundary Conditions
