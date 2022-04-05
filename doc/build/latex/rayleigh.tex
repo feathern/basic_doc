@@ -855,6 +855,130 @@ Generic\sphinxhyphen{}input file containing a custom lower boundary condition fo
 \end{description}
 
 
+\section{Initial Conditions}
+\label{\detokenize{doc/source/Namelist_Definitions/Namelist_Variables:initial-conditions}}
+\sphinxAtStartPar
+All variables necessary to initialize velocity, temperature, pressure, and magnetic field are supplied here.
+\begin{description}
+\item[{\sphinxstylestrong{init\_type}}] \leavevmode\begin{description}
+\item[{Integer value indicating how nonmagnetic variables should be initialized.}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+type \sphinxhyphen{}1:  Restart from a checkpoint
+
+\item {} 
+\sphinxAtStartPar
+type  1:  Hydro Boussinesq benchmark init (Christensen et al. 2001).  The temperature field is initialized with an \(\ell=4\) , m=4 perturbation on top of a conductive profile.  Velocity/pressure are zero.
+
+\item {} 
+\sphinxAtStartPar
+type  6:  Hydro anelastic benchmark init (Jones et al. 2011).  The entropy field is initialized with an \(\ell=19\) , m=19 and \(\ell=1\) , m=1  perturbation on top of a conductive profile.  Velocity/pressure are zero.
+
+\item {} 
+\sphinxAtStartPar
+type  7:  A randomized temperature/entropy field is initialized.  Velocity and pressure are set to zero.
+
+\item {} 
+\sphinxAtStartPar
+type  8:  Velocity, entropy/temperature, and pressure are initialized to zero, or if an associated filename is provided, they are initialized using the generic input interface.
+
+\end{itemize}
+
+\end{description}
+
+\item[{\sphinxstylestrong{magnetic\_init\_type}}] \leavevmode\begin{description}
+\item[{Integer value indicating how magnetic field should be initialized.}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+type \sphinxhyphen{}1:  Initialize magnetic field from a checkpoint.
+
+\item {} 
+\sphinxAtStartPar
+type  1:  Magnetic initialization for  Christensen et al. (2001), case 1.  The poloidal flux function is initialized using an \(\ell=1,m=0\) mode.  THe toroidal flux function is initialized with an \(\ell=2,m=0\) mode.
+
+\item {} 
+\sphinxAtStartPar
+type  7:  The poloidal and toroidal flux functions are initialized to randomized values.
+
+\item {} 
+\sphinxAtStartPar
+type  8:  The poloidal and toroidal flux functions are intialized to zero, and then if a corresponding generic input file is specified, their initial state is read from that file.
+
+\end{itemize}
+
+\end{description}
+
+\item[{\sphinxstylestrong{restart\_iter}}] \leavevmode
+\sphinxAtStartPar
+Iteration number indicating the checkpoint to restart from when init\_type and magnetic\_init\_type equal 1.
+
+\item[{\sphinxstylestrong{temp\_amp}}] \leavevmode
+\sphinxAtStartPar
+Amplitude of randomized temperature/entropy perturbations to use with init\_type = 7.
+
+\item[{\sphinxstylestrong{mag\_amp}}] \leavevmode
+\sphinxAtStartPar
+Amplitude of randomized magnetic perturbations to use with magnetic\_init\_type = 7.
+
+\item[{\sphinxstylestrong{t\_init\_file}}] \leavevmode
+\sphinxAtStartPar
+Name of generic input file that, if init\_type=8, will be used to initialize temperature/entropy.
+
+\item[{\sphinxstylestrong{p\_init\_file}}] \leavevmode
+\sphinxAtStartPar
+Name of generic input file that, if init\_type=8, will be used to initialize pressure.
+
+\item[{\sphinxstylestrong{w\_init\_file}}] \leavevmode
+\sphinxAtStartPar
+Name of generic input file that, if init\_type=8, will be used to initialize the poloidal stream function \sphinxstyleemphasis{W}.
+
+\item[{\sphinxstylestrong{z\_init\_file}}] \leavevmode
+\sphinxAtStartPar
+Name of generic input file that, if init\_type=8, will be used to initialize the toroidal stream function \sphinxstyleemphasis{Z}.
+
+\item[{\sphinxstylestrong{c\_init\_file}}] \leavevmode
+\sphinxAtStartPar
+Name of generic input file that, if init\_type=8, will be used to initialize the poloidal stream function \sphinxstyleemphasis{C}.
+
+\item[{\sphinxstylestrong{a\_init\_file}}] \leavevmode
+\sphinxAtStartPar
+Name of generic input file that, if init\_type=8, will be used to initialize the toroidal stream function \sphinxstyleemphasis{A}.
+
+\item[{\sphinxstylestrong{rescale\_velocity}}] \leavevmode
+\sphinxAtStartPar
+Logical variable indicating that the velocity field should be rescaled upon restart.  Default = .false.
+
+\item[{\sphinxstylestrong{velocity\_scale}}] \leavevmode
+\sphinxAtStartPar
+Factor by which to rescale the velocity field upon restart.
+
+\item[{\sphinxstylestrong{rescale\_pressure}}] \leavevmode
+\sphinxAtStartPar
+Logical variable indicating that the pressure field should be rescaled upon restart.  Default = .false.
+
+\item[{\sphinxstylestrong{pressure\_scale}}] \leavevmode
+\sphinxAtStartPar
+Factor by which to rescale the pressure field upon restart.
+
+\item[{\sphinxstylestrong{rescale\_tvar}}] \leavevmode
+\sphinxAtStartPar
+Logical variable indicating that the temperature/entropy field should be rescaled upon restart.  Default = .false.
+
+\item[{\sphinxstylestrong{tvar\_scale}}] \leavevmode
+\sphinxAtStartPar
+Factor by which to rescale the temperature/entropy field upon restart.
+
+\item[{\sphinxstylestrong{rescale\_bfield}}] \leavevmode
+\sphinxAtStartPar
+Logical variable indicating that the magnetic field should be rescaled upon restart.  Default = .false.
+
+\item[{\sphinxstylestrong{bfield\_scale}}] \leavevmode
+\sphinxAtStartPar
+Factor by which to rescale the magnetic field upon restart.
+
+\end{description}
+
+
 \section{Reference}
 \label{\detokenize{doc/source/Namelist_Definitions/Namelist_Variables:reference}}
 \sphinxAtStartPar

@@ -227,6 +227,67 @@
 </dd>
 </dl>
 </section>
+<section id="initial-conditions">
+<h2>Initial Conditions<a class="headerlink" href="#initial-conditions" title="Permalink to this headline">¶</a></h2>
+<p>All variables necessary to initialize velocity, temperature, pressure, and magnetic field are supplied here.</p>
+<dl class="simple">
+<dt><strong>init_type</strong></dt><dd><dl class="simple">
+<dt>Integer value indicating how nonmagnetic variables should be initialized.</dt><dd><ul class="simple">
+<li><p>type -1:  Restart from a checkpoint</p></li>
+<li><p>type  1:  Hydro Boussinesq benchmark init (Christensen et al. 2001).  The temperature field is initialized with an <span class="math notranslate nohighlight">\(\ell=4\)</span> , m=4 perturbation on top of a conductive profile.  Velocity/pressure are zero.</p></li>
+<li><p>type  6:  Hydro anelastic benchmark init (Jones et al. 2011).  The entropy field is initialized with an <span class="math notranslate nohighlight">\(\ell=19\)</span> , m=19 and <span class="math notranslate nohighlight">\(\ell=1\)</span> , m=1  perturbation on top of a conductive profile.  Velocity/pressure are zero.</p></li>
+<li><p>type  7:  A randomized temperature/entropy field is initialized.  Velocity and pressure are set to zero.</p></li>
+<li><p>type  8:  Velocity, entropy/temperature, and pressure are initialized to zero, or if an associated filename is provided, they are initialized using the generic input interface.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt><strong>magnetic_init_type</strong></dt><dd><dl class="simple">
+<dt>Integer value indicating how magnetic field should be initialized.</dt><dd><ul class="simple">
+<li><p>type -1:  Initialize magnetic field from a checkpoint.</p></li>
+<li><p>type  1:  Magnetic initialization for  Christensen et al. (2001), case 1.  The poloidal flux function is initialized using an <span class="math notranslate nohighlight">\(\ell=1,m=0\)</span> mode.  THe toroidal flux function is initialized with an <span class="math notranslate nohighlight">\(\ell=2,m=0\)</span> mode.</p></li>
+<li><p>type  7:  The poloidal and toroidal flux functions are initialized to randomized values.</p></li>
+<li><p>type  8:  The poloidal and toroidal flux functions are intialized to zero, and then if a corresponding generic input file is specified, their initial state is read from that file.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt><strong>restart_iter</strong></dt><dd><p>Iteration number indicating the checkpoint to restart from when init_type and magnetic_init_type equal 1.</p>
+</dd>
+<dt><strong>temp_amp</strong></dt><dd><p>Amplitude of randomized temperature/entropy perturbations to use with init_type = 7.</p>
+</dd>
+<dt><strong>mag_amp</strong></dt><dd><p>Amplitude of randomized magnetic perturbations to use with magnetic_init_type = 7.</p>
+</dd>
+<dt><strong>t_init_file</strong></dt><dd><p>Name of generic input file that, if init_type=8, will be used to initialize temperature/entropy.</p>
+</dd>
+<dt><strong>p_init_file</strong></dt><dd><p>Name of generic input file that, if init_type=8, will be used to initialize pressure.</p>
+</dd>
+<dt><strong>w_init_file</strong></dt><dd><p>Name of generic input file that, if init_type=8, will be used to initialize the poloidal stream function <em>W</em>.</p>
+</dd>
+<dt><strong>z_init_file</strong></dt><dd><p>Name of generic input file that, if init_type=8, will be used to initialize the toroidal stream function <em>Z</em>.</p>
+</dd>
+<dt><strong>c_init_file</strong></dt><dd><p>Name of generic input file that, if init_type=8, will be used to initialize the poloidal stream function <em>C</em>.</p>
+</dd>
+<dt><strong>a_init_file</strong></dt><dd><p>Name of generic input file that, if init_type=8, will be used to initialize the toroidal stream function <em>A</em>.</p>
+</dd>
+<dt><strong>rescale_velocity</strong></dt><dd><p>Logical variable indicating that the velocity field should be rescaled upon restart.  Default = .false.</p>
+</dd>
+<dt><strong>velocity_scale</strong></dt><dd><p>Factor by which to rescale the velocity field upon restart.</p>
+</dd>
+<dt><strong>rescale_pressure</strong></dt><dd><p>Logical variable indicating that the pressure field should be rescaled upon restart.  Default = .false.</p>
+</dd>
+<dt><strong>pressure_scale</strong></dt><dd><p>Factor by which to rescale the pressure field upon restart.</p>
+</dd>
+<dt><strong>rescale_tvar</strong></dt><dd><p>Logical variable indicating that the temperature/entropy field should be rescaled upon restart.  Default = .false.</p>
+</dd>
+<dt><strong>tvar_scale</strong></dt><dd><p>Factor by which to rescale the temperature/entropy field upon restart.</p>
+</dd>
+<dt><strong>rescale_bfield</strong></dt><dd><p>Logical variable indicating that the magnetic field should be rescaled upon restart.  Default = .false.</p>
+</dd>
+<dt><strong>bfield_scale</strong></dt><dd><p>Factor by which to rescale the magnetic field upon restart.</p>
+</dd>
+</dl>
+</section>
 <section id="reference">
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <p>This namelist provides options to control the properties of Rayleigh’s background state.</p>
@@ -378,6 +439,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#temporal-controls">Temporal Controls</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#io-controls">IO Controls</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#boundary-conditions">Boundary Conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#initial-conditions">Initial Conditions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#transport">Transport</a></li>
 </ul>

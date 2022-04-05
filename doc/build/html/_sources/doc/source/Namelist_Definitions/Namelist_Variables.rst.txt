@@ -43,6 +43,13 @@ This namelist provides those options necessary to determine the boundary conditi
 
 .. include:: ../Namelist_Definitions/boundary_conditions_namelist.txt 
 
+Initial Conditions
+-------------------------
+All variables necessary to initialize velocity, temperature, pressure, and magnetic field are supplied here.
+
+.. include:: ../Namelist_Definitions/initial_conditions_namelist.txt 
+
+
 Reference
 -------------------------
 This namelist provides options to control the properties of Rayleigh's background state.
