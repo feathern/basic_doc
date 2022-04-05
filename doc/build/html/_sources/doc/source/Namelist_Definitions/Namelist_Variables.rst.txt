@@ -36,6 +36,13 @@ This namelist provides various options to control Rayleigh's input and output ca
 
 .. include:: ../Namelist_Definitions/io_controls_namelist.txt 
 
+
+Boundary Conditions
+-------------------------
+This namelist provides those options necessary to determine the boundary conditions employed in a Rayleigh model.
+
+.. include:: ../Namelist_Definitions/boundary_conditions_namelist.txt 
+
 Reference
 -------------------------
 This namelist provides options to control the properties of Rayleigh's background state.

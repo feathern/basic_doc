@@ -763,6 +763,98 @@ Number of digits to use after then decimal point for those portions of Rayleighâ
 \end{description}
 
 
+\section{Boundary Conditions}
+\label{\detokenize{doc/source/Namelist_Definitions/Namelist_Variables:boundary-conditions}}
+\sphinxAtStartPar
+This namelist provides those options necessary to determine the boundary conditions employed in a Rayleigh model.
+\begin{description}
+\item[{\sphinxstylestrong{fix\_tvar\_top}}] \leavevmode
+\sphinxAtStartPar
+Logical flag indicating whether thermal variable (T,S) should be fixed on the upper boundary.  Default = .true.
+
+\item[{\sphinxstylestrong{fix\_tvar\_bottom}}] \leavevmode
+\sphinxAtStartPar
+Logical flag indicating whether thermal variable (T,S) should be fixed on the lower boundary.  Default = .true.
+
+\item[{\sphinxstylestrong{fix\_dtdr\_top}}] \leavevmode
+\sphinxAtStartPar
+Logical flag indicating whether the radial derivative of thermal variable (T,S) should be fixed on the upper boundary.  Default = .false.
+
+\item[{\sphinxstylestrong{fix\_dtdr\_bottom}}] \leavevmode
+\sphinxAtStartPar
+Logical flag indicating whether the radial derivative of thermal variable (T,S) should be fixed on the lower boundary.  Default = .false.
+
+\item[{\sphinxstylestrong{T\_top}}] \leavevmode
+\sphinxAtStartPar
+Value of thermal variable (T,S) at the upper boundary.  Default = 0.
+
+\item[{\sphinxstylestrong{T\_bottom}}] \leavevmode
+\sphinxAtStartPar
+Value of thermal variable (T,S) at the lower boundary.  Default = 1.
+
+\item[{\sphinxstylestrong{dTdr\_top}}] \leavevmode
+\sphinxAtStartPar
+Value of radial derivative of thermal variable (T,S) at the upper boundary.  Default = 0.
+
+\item[{\sphinxstylestrong{dTdr\_bottom}}] \leavevmode
+\sphinxAtStartPar
+Value of radial derivative of thermal variable (T,S) at the lower boundary.  Default = 0.
+
+\item[{\sphinxstylestrong{adjust\_dTdr\_top}}] \leavevmode
+\sphinxAtStartPar
+Logical flag indicating that dTdr\_top should be set based on the values of heating\_integral (or luminosity) and the value of dTdr\_bottom.  Default value is .false.  When .true., this flag only has an effect when fix\_dtdr\_top = .true. and heating\_type \textgreater{} 0.  When active, dTdr\_top is set such that the integrated flux passing through the upper boundary is equal to the sum of those due to internal heating and any flux passing through the lower boundary due to fixed dTdr\_bottom.
+
+\item[{\sphinxstylestrong{no\_slip\_top}}] \leavevmode
+\sphinxAtStartPar
+When .true., a no\sphinxhyphen{}slip condition on the horizontal velocity field is enforced at the upper boundary.  Default = .false.
+
+\item[{\sphinxstylestrong{no\_slip\_bottom}}] \leavevmode
+\sphinxAtStartPar
+When .true., a no\sphinxhyphen{}slip condition on the horizontal velocity field is enforced at the lower boundary.  Default = .false.
+
+\item[{\sphinxstylestrong{stress\_free\_top}}] \leavevmode
+\sphinxAtStartPar
+When .true., a stress\sphinxhyphen{}free condition on the horizontal velocity field is enforced at the upper boundary.  Default = .true.
+
+\item[{\sphinxstylestrong{stress\_free\_bottom}}] \leavevmode
+\sphinxAtStartPar
+When .true., a stress\sphinxhyphen{}free condition on the horizontal velocity field is enforced at the lower boundary.  Default = .true.
+
+\item[{\sphinxstylestrong{no\_slip\_boundaries}}] \leavevmode
+\sphinxAtStartPar
+When .true., both no\_slip\_top and no\_slip\_bottom are set to .false.  Default = .false.
+
+\item[{\sphinxstylestrong{strict\_L\_Conservation}}] \leavevmode
+\sphinxAtStartPar
+In some cases, typically rotating models employing MHD or thick shells, angular momentum can leak into/out of the domain even when using stree\sphinxhyphen{}free boundaries.  When .true., this flag replaces the upper boundary condition with an integral constraint on the \(\ell=1\) toroidal streamfunction that enforces strict conservation of angular momentum.  Note that the upper boundary is neither stress\sphinxhyphen{}free nor no\sphinxhyphen{}slip in this case.  Default = .false.
+
+\item[{\sphinxstylestrong{T\_top\_file}}] \leavevmode
+\sphinxAtStartPar
+Generic\sphinxhyphen{}input file containing a custom, fixed (T,S) upper boundary condition.
+
+\item[{\sphinxstylestrong{T\_bottom\_file}}] \leavevmode
+\sphinxAtStartPar
+Generic\sphinxhyphen{}input file containing a custom, fixed (T,S) lower boundary condition.
+
+\item[{\sphinxstylestrong{dTdr\_top\_file}}] \leavevmode
+\sphinxAtStartPar
+Generic\sphinxhyphen{}input file containing a custom, fixed (\(\partial T/\partial r\), \(\partial S/\partial r\)) upper boundary condition.
+
+\item[{\sphinxstylestrong{dTdr\_bottom\_file}}] \leavevmode
+\sphinxAtStartPar
+Generic\sphinxhyphen{}input file containing a custom, fixed (\(\partial T/\partial r\), \(\partial S/\partial r\)) lower boundary condition.
+
+\item[{\sphinxstylestrong{C\_top\_file}}] \leavevmode
+\sphinxAtStartPar
+Generic\sphinxhyphen{}input file containing a custom upper boundary condition for the poloidal flux function \sphinxstyleemphasis{C}.
+
+\item[{\sphinxstylestrong{C\_bottom\_file}}] \leavevmode
+\sphinxAtStartPar
+Generic\sphinxhyphen{}input file containing a custom lower boundary condition for the poloidal flux function \sphinxstyleemphasis{C}.
+
+\end{description}
+
+
 \section{Reference}
 \label{\detokenize{doc/source/Namelist_Definitions/Namelist_Variables:reference}}
 \sphinxAtStartPar
