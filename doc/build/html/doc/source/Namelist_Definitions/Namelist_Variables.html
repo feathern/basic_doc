@@ -15,7 +15,7 @@
     <script src="../../../_static/doctools.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "document", "processHtmlClass": "math|output_area"}}</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="prev" title="Grid Specification" href="../Model_Setup/grid_specification.html" />
@@ -182,7 +182,7 @@
 <section id="reference">
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <p>This namelist provides options to control the properties of Rayleigh’s background state.</p>
-<dl class="simple">
+<dl>
 <dt><strong>reference_type</strong></dt><dd><dl class="simple">
 <dt>Determines the fluid approximation and background state used by Rayleigh.</dt><dd><ul class="simple">
 <li><p>type 1:  Boussinesq + nondimensional</p></li>
@@ -231,19 +231,35 @@
 </dd>
 <dt><strong>gravity_power</strong></dt><dd><p>Specifies the value of <em>n</em> (real number) used to determine the radial variation of gravitational acceleration <em>g</em> in reference type 1, where <span class="math notranslate nohighlight">\(g\propto\left(\frac{r}{r_\mathrm{max}}\right)^n\)</span>.</p>
 </dd>
-<dt><strong>ra_constants</strong></dt><dd><p>words</p>
+<dt><strong>ra_constants</strong></dt><dd><p>Indicates the desired value of specified constant coefficients when reading the value from main_input instead of from a custom-refernce file.  For use with override_constants or override_constant flags.   Syntax is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">Reference_Namelist</span>
+ <span class="o">...</span>
+ <span class="n">ra_constants</span><span class="p">(</span> <span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="mf">1.0</span>
+ <span class="n">ra_constants</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">=</span> <span class="mf">14.0</span>
+ <span class="o">...</span>
+<span class="o">/</span>
+</pre></div>
+</div>
 </dd>
-<dt><strong>with_custom_constants</strong></dt><dd><p>words</p>
+<dt><strong>with_custom_constants</strong></dt><dd><p>Comma separated list of integers indicating which constant coefficients should be read from a custom-refernce file when with_custom_reference is true.</p>
 </dd>
-<dt><strong>with_custom_functions</strong></dt><dd><p>words</p>
+<dt><strong>with_custom_functions</strong></dt><dd><p>Comma separated list of integers indicating which non-constant coefficients should be read from a custom-refernce file when with_custom_reference is true.</p>
 </dd>
-<dt><strong>with_custom_reference</strong></dt><dd><p>words</p>
+<dt><strong>with_custom_reference</strong></dt><dd><p>Logical flag that indicates some constant and non-constant coefficients should be read from a custom-reference file and used to overwrite those values otherwise assigned for reference_Types 1–3.  Default value is .false.</p>
 </dd>
-<dt><strong>custom_reference_file</strong></dt><dd><p>words</p>
+<dt><strong>custom_reference_file</strong></dt><dd><p>Name of file from which to read custom-reference-state information when using reference_type 4 or when augmenting reference types 1–3.</p>
 </dd>
-<dt><strong>override_constants</strong></dt><dd><p>words</p>
+<dt><strong>override_constants</strong></dt><dd><p>When true, ALL constant coefficients specified in the custom-reference file will be ignored, and those specified in main_input will be used instead.  Constant coefficients not specified in main_input will be assigned a value of zero.  Default value is .false.</p>
 </dd>
-<dt><strong>override_constant</strong></dt><dd><p>words</p>
+<dt><strong>override_constant</strong></dt><dd><p>Indicates that particular constant coefficients, rather than all, should be overridden using main_input values when using reference_type 4.  Multiple constant overrides can be specified, one per line, with the syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">Reference_Namelist</span>
+ <span class="o">...</span>
+ <span class="n">override_constant</span><span class="p">(</span> <span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">T</span>
+ <span class="n">override_constant</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">=</span> <span class="n">T</span>
+ <span class="o">...</span>
+<span class="o">/</span>
+</pre></div>
+</div>
 </dd>
 </dl>
 </section>

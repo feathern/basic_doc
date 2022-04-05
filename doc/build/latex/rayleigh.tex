@@ -231,7 +231,7 @@
   
 
 \title{Rayleigh}
-\date{Mar 29, 2022}
+\date{Apr 05, 2022}
 \release{}
 \author{Nick Featherstone}
 \newcommand{\sphinxlogo}{\sphinxincludegraphics{rayleigh_manual_image_300dpi.jpeg}\par}
@@ -866,31 +866,49 @@ Specifies the value of \sphinxstyleemphasis{n} (real number) used to determine t
 
 \item[{\sphinxstylestrong{ra\_constants}}] \leavevmode
 \sphinxAtStartPar
-words
+Indicates the desired value of specified constant coefficients when reading the value from main\_input instead of from a custom\sphinxhyphen{}refernce file.  For use with override\_constants or override\_constant flags.   Syntax is:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{o}{\PYGZam{}}\PYG{n}{Reference\PYGZus{}Namelist}
+ \PYG{o}{.}\PYG{o}{.}\PYG{o}{.}
+ \PYG{n}{ra\PYGZus{}constants}\PYG{p}{(} \PYG{l+m+mi}{2}\PYG{p}{)} \PYG{o}{=} \PYG{l+m+mf}{1.0}
+ \PYG{n}{ra\PYGZus{}constants}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{)} \PYG{o}{=} \PYG{l+m+mf}{14.0}
+ \PYG{o}{.}\PYG{o}{.}\PYG{o}{.}
+\PYG{o}{/}
+\end{sphinxVerbatim}
 
 \item[{\sphinxstylestrong{with\_custom\_constants}}] \leavevmode
 \sphinxAtStartPar
-words
+Comma separated list of integers indicating which constant coefficients should be read from a custom\sphinxhyphen{}refernce file when with\_custom\_reference is true.
 
 \item[{\sphinxstylestrong{with\_custom\_functions}}] \leavevmode
 \sphinxAtStartPar
-words
+Comma separated list of integers indicating which non\sphinxhyphen{}constant coefficients should be read from a custom\sphinxhyphen{}refernce file when with\_custom\_reference is true.
 
 \item[{\sphinxstylestrong{with\_custom\_reference}}] \leavevmode
 \sphinxAtStartPar
-words
+Logical flag that indicates some constant and non\sphinxhyphen{}constant coefficients should be read from a custom\sphinxhyphen{}reference file and used to overwrite those values otherwise assigned for reference\_Types 1\textendash{}3.  Default value is .false.
 
 \item[{\sphinxstylestrong{custom\_reference\_file}}] \leavevmode
 \sphinxAtStartPar
-words
+Name of file from which to read custom\sphinxhyphen{}reference\sphinxhyphen{}state information when using reference\_type 4 or when augmenting reference types 1\textendash{}3.
 
 \item[{\sphinxstylestrong{override\_constants}}] \leavevmode
 \sphinxAtStartPar
-words
+When true, ALL constant coefficients specified in the custom\sphinxhyphen{}reference file will be ignored, and those specified in main\_input will be used instead.  Constant coefficients not specified in main\_input will be assigned a value of zero.  Default value is .false.
 
 \item[{\sphinxstylestrong{override\_constant}}] \leavevmode
 \sphinxAtStartPar
-words
+Indicates that particular constant coefficients, rather than all, should be overridden using main\_input values when using reference\_type 4.  Multiple constant overrides can be specified, one per line, with the syntax:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{o}{\PYGZam{}}\PYG{n}{Reference\PYGZus{}Namelist}
+ \PYG{o}{.}\PYG{o}{.}\PYG{o}{.}
+ \PYG{n}{override\PYGZus{}constant}\PYG{p}{(} \PYG{l+m+mi}{2}\PYG{p}{)} \PYG{o}{=} \PYG{n}{T}
+ \PYG{n}{override\PYGZus{}constant}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{)} \PYG{o}{=} \PYG{n}{T}
+ \PYG{o}{.}\PYG{o}{.}\PYG{o}{.}
+\PYG{o}{/}
+\end{sphinxVerbatim}
 
 \end{description}
 
